@@ -1,160 +1,278 @@
-<?php
-  // Basic config
-  $siteName = "THE LOVING FRIENDS FOUNDATION";
-  $tagline  = "LIFE IS A SERVICE";
-  $nav = [
-    "Home" => "#home",
-    "Features" => "#features",
-    "About" => "#about",
-    "Contact" => "#contact"
-  ];
-?>
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><?php echo htmlspecialchars($siteName); ?> — Front Page</title>
-  <meta name="description" content="<?php echo htmlspecialchars($tagline); ?>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Mathews | Developer Portfolio</title>
+  <meta name="description" content="Personal portfolio website for Mathews, a web developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f172a;
-      --muted: #cbd5e1;
-      --text: #e2e8f0;
-      --accent: #38bdf8;
-      --accent-2: #22d3ee;
-      --ring: rgba(56,189,248,.35);
-      --shadow: 0 10px 25px rgba(2,6,23,.35);
-      --radius: 18px;
+      --bg: #0b1020;
+      --panel: #121a33;
+      --text: #e6ecff;
+      --muted: #a9b6d9;
+      --accent: #5eead4;
+      --accent-dark: #2dd4bf;
+      --border: rgba(169, 182, 217, 0.2);
+      --radius: 16px;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     }
+
     * { box-sizing: border-box; }
+
     body {
-      margin: 0; font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
       color: var(--text);
-      background: var(--bg);
+      background: radial-gradient(circle at 20% 10%, #1d2a55 0%, var(--bg) 40%);
+      line-height: 1.6;
     }
+
     a { color: inherit; text-decoration: none; }
-    .container { width: min(1100px, 92%); margin: 0 auto; }
 
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: rgba(15,23,42,0.9); border-bottom: 1px solid rgba(148,163,184,0.1); }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
-    .logo { width: 34px; height: 34px; border-radius: 10px; background: conic-gradient(from 180deg, var(--accent), var(--accent-2)); }
-    nav ul { display: flex; list-style: none; gap: 22px; margin: 0; padding: 0; }
-    nav a { color: var(--muted); font-weight: 500; }
-    nav a:hover { color: white; }
-    .btn { padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(56,189,248,.25); background: rgba(56,189,248,.22); color: white; font-weight: 600; box-shadow: var(--shadow); }
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
 
-    .hero { padding: 84px 0 56px; text-align: center; }
-    .eyebrow { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 12px; }
-    .title { font-weight: 800; font-size: clamp(36px, 6vw, 56px); margin: 10px 0 14px; }
-    .subtitle { color: var(--muted); max-width: 760px; margin: 0 auto; }
-    .cta-row { display: flex; gap: 14px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11, 16, 32, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
 
-    .section { padding: 56px 0; }
-    .photo-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-    .photo-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); transition: transform .2s ease; }
-    .photo-grid img:hover { transform: scale(1.03); }
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 16px;
+    }
 
-    .about { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; background: rgba(34,211,238,.05); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
-    .about img { width: 100%; border-radius: 14px; display: block; }
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
 
-    form { display: grid; gap: 12px; max-width: 560px; margin: 0 auto; }
-    input, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(148,163,184,.25); background: rgba(2,6,23,.35); color: var(--text); }
-    input:focus, textarea:focus { box-shadow: 0 0 0 4px var(--ring); border-color: rgba(56,189,248,.6); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+    }
 
-    footer { border-top: 1px solid rgba(148,163,184,.2); margin-top: 60px; }
-    .foot { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; flex-wrap: wrap; color: var(--muted); }
+    nav a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(120deg, var(--accent), var(--accent-dark));
+      color: #06241f;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 70px 0 50px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 10px 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.12;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .cta-group {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      max-height: 460px;
+    }
+
+    section { padding: 30px 0; }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 1.6rem;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: rgba(18, 26, 51, 0.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-list span {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .contact {
+      background: rgba(18, 26, 51, 0.85);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 34px 0 26px;
+    }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-wrap { flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <a href="#home"><?php echo htmlspecialchars($siteName); ?></a>
-      </div>
-      <nav>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">Mathews.dev</a>
+      <nav aria-label="Main navigation">
         <ul>
-          <?php foreach ($nav as $label => $href): ?>
-            <li><a href="<?php echo $href; ?>"><?php echo htmlspecialchars($label); ?></a></li>
-          <?php endforeach; ?>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <a class="btn" href="#contact">Get Started</a>
+      <a class="btn" href="#contact">Hire Me</a>
     </div>
   </header>
 
-  <main id="home">
-    <section class="hero container">
-      <div class="eyebrow">WELCOME TO</div>
-      <h1 class="title">THE LOVING FRIENDS FOUNDATION</h1>
-      <p class="subtitle"><?php echo htmlspecialchars($tagline); ?>...</p>
-      <div class="cta-row">
-        <a class="btn" href="#features">Explore Gallery</a>
-        <a class="btn" href="#about">Learn More</a>
-      </div>
-    </section>
-
-    <section id="features" class="section container">
-      <div class="photo-grid">
-        <img src="11.jpg" alt="Modern workspace" />
-        <img src="2.jpg" alt="Team meeting" />
-        <img src="3.jpg" alt="Laptop on desk" />
-        <img src="4.jpg" alt="Creative design wall" />
-        <img src="5.jpg" alt="Coffee and notes" />
-        <img src="6.jpg" alt="Office interior" />
-      </div>
-    </section>
-
-    <section id="about" class="section container">
-      <div class="about">
-        <div>
-          <h2>About <?php echo htmlspecialchars($siteName); ?></h2>
-          <p class="muted">"Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres. Love never fails." (1 Corinthians 13:4-8, NIV)
-.</p>
-          <ul>
-            <li>A voice for the voiceless</li>
-            <li>Shining our little lights</li>
-            <li>A friend to all</li>
-          </ul>
+  <main id="home" class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Developer Portfolio</p>
+        <h1>Hi, I'm Mathews — I build clean, fast, and user-friendly web experiences.</h1>
+        <p class="subtitle">
+          I'm a front-end focused developer who enjoys turning ideas into polished websites and web apps.
+          I care about performance, responsive design, and writing maintainable code.
+        </p>
+        <div class="cta-group">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn-outline" href="#contact">Let's Talk</a>
         </div>
-        <img src="11.jpg" alt="Team collaborating at a desk" />
+      </div>
+      <img src="IMG-20250114-WA0059.jpg" alt="Portrait of developer Mathews" />
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="card">
+        <p>
+          I am a developer passionate about creating modern digital products. I enjoy solving real problems,
+          learning new technologies, and collaborating with clients and teams to deliver quality solutions.
+        </p>
       </div>
     </section>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <p class="muted">Got questions or want to work together? Send a quick message below.</p>
-      <form method="post" action="#contact">
-        <input name="name" type="text" placeholder="Your name" required />
-        <input name="email" type="email" placeholder="you@example.com" required />
-        <textarea name="message" placeholder="How can we help?" required></textarea>
-        <button class="btn" type="submit">Send Message</button>
-      </form>
-      <?php if ($_SERVER['REQUEST_METHOD'] === 'POST'):
-        $name = htmlspecialchars($_POST['name'] ?? '');
-        $email = htmlspecialchars($_POST['email'] ?? '');
-        $msg = htmlspecialchars($_POST['message'] ?? '');
-        if ($name && $email && $msg): ?>
-          <p role="status" style="margin-top:14px">Thanks, <strong><?php echo $name; ?></strong> — we'll get back to you at <strong><?php echo $email; ?></strong>.</p>
-      <?php else: ?>
-          <p role="alert" style="margin-top:14px;color:#fecaca">Please complete all fields.</p>
-      <?php endif; endif; ?>
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Business Landing Page</h3>
+          <p>A responsive marketing site with smooth navigation, call-to-action sections, and clear branding.</p>
+        </article>
+        <article class="card">
+          <h3>E-commerce UI</h3>
+          <p>Designed and developed a product catalog interface with filtering, reusable components, and mobile support.</p>
+        </article>
+        <article class="card">
+          <h3>Portfolio Website</h3>
+          <p>Built a personal showcase website with clean visuals, project highlights, and a quick contact section.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="card skill-list">
+        <span>HTML5</span>
+        <span>CSS3</span>
+        <span>JavaScript</span>
+        <span>Responsive Design</span>
+        <span>Git & GitHub</span>
+        <span>UI/UX Basics</span>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact">
+        <p>Interested in working together? Reach out anytime.</p>
+        <p><strong>Email:</strong> mathews.dev@example.com</p>
+        <p><strong>Location:</strong> Available for remote projects</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container foot">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span><?php echo htmlspecialchars($siteName); ?></span>
-      </div>
-      <small>© <?php echo date('Y'); ?> <?php echo htmlspecialchars($siteName); ?>. All rights reserved.</small>
-    </div>
+    <div class="container">© 2026 Mathews. Built with HTML and CSS.</div>
   </footer>
 </body>
 </html>
